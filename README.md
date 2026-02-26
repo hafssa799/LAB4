@@ -2,7 +2,7 @@
 
 # LAB 4 — Analyse Statique d’un APK avec JADX
 
-## Objectif du Lab
+ # Objectif du Lab
 
 -Préparer un environnement d’analyse
 
@@ -12,7 +12,7 @@
 
 -Analyser son manifeste avec l’outil JADX GUI
 
-  # Task 1 — Préparer le workspace et vérifier l’APK
+# Task 1 — Préparer le workspace et vérifier l’APK
 
  # Objectif
 
@@ -22,8 +22,6 @@
 
 Sous Windows :
 
- # mkdir C:\APK-Analysis
- 
 ![](https://github.com/user-attachments/assets/1dab7e1d-b78f-4bc5-a912-5e065149d4c9)
 
 ![](https://github.com/user-attachments/assets/b9cb9a0d-11b1-45d1-b2bc-4ade75b8f5f8)
@@ -43,10 +41,6 @@ Commande utilisée :
 Résultat attendu :
 
 ![](https://github.com/user-attachments/assets/db1aef3e-2b91-4aec-8c37-75419d950d07)
-
-Explication :
-Les bytes 50 4B correspondent à PK, signature d’un fichier ZIP.
-Un APK étant une archive ZIP, cela confirme que le fichier est valide.
 
 4️⃣ Liste du contenu interne de l’APK
 
@@ -68,26 +62,17 @@ Exemple de résultat :
 
 ![](https://github.com/user-attachments/assets/62ee9fa8-f77b-4d8a-9b63-4ca7d1f50e7b)
 
-# Explication :
-Le hash SHA-256 permet d’assurer la traçabilité et l’intégrité du fichier.
-Si le fichier est modifié, le hash changera.
+# Task 2 — Obtenir l’APK
 
+* S’assurer de disposer d’un APK valide pour l’analyse.
 
-✅ Task 2 — Obtenir l’APK
+ Méthode utilisée : Génération depuis Android Studio
 
--S’assurer de disposer d’un APK valide pour l’analyse.
+* L’APK a été généré à partir d’un projet Android personnel via :
 
-# Méthode utilisée : Génération depuis Android Studio
+   - Build > Build Bundle(s) / APK(s) > Build APK(s)
 
- - L’APK a été généré à partir d’un projet Android personnel via :
-
-Build > Build Bundle(s) / APK(s) > Build APK(s)
-
-Chemin du fichier généré :
-
-# C:\Users\HP\AndroidStudioProjects\M\app\build\outputs\apk\debug\app-debug.apk
-
-Copie vers le dossier de travail avec la Vérification du fichier copié :
+   - Chemin du fichier généré :  C:\Users\HP\AndroidStudioProjects\M\app\build\outputs\apk\debug\app-debug.apk
 
 # Commande utilisée 
 
@@ -95,7 +80,7 @@ Copie vers le dossier de travail avec la Vérification du fichier copié :
 
 ![](https://github.com/user-attachments/assets/c93958e5-0491-4a4a-98de-5ce4cb319bd0)
 
-✅ Task 3 — Analyse avec JADX GUI
+# Task 3 — Analyse avec JADX GUI
 
 1️⃣ Lancement de JADX GUI
 
@@ -111,88 +96,28 @@ Commande utilisée :
 
 ![](https://github.com/user-attachments/assets/a5170f25-4dd2-4871-b0e3-ab737831ebde)
 
-
 3️⃣ Analyse du AndroidManifest.xml
-🔹 Package principal
 
-Exemple :
-
-package="com.example.myapplication"
-🔹 Version
-versionName="1.0"
-🔹 SDK
-minSdkVersion="24"
-targetSdkVersion="33"
-🔹 Permissions demandées
-
-Exemples possibles :
-
-android.permission.INTERNET
-
-android.permission.ACCESS_NETWORK_STATE
-
-Ces permissions déterminent les capacités de l’application.
 ![](https://github.com/user-attachments/assets/3545b701-3789-4326-b494-13406f2eefd4)
 
-📸 Capture 10 : Permissions dans le manifeste
-
-🔹 Composants identifiés
-
-Activities
-
-Services
-
-Broadcast Receivers
-
-Content Providers
-
-🔹 Composants exportés
-
-Exemple :
-
-android:exported="true"
-
-⚠ Explication :
-
-Un composant avec android:exported="true" peut être lancé par d’autres applications.
-Cela augmente la surface d’attaque.
-
-Depuis Android 12, cet attribut doit être explicitement défini pour les composants avec intent-filter.
 ![](https://github.com/user-attachments/assets/2c552669-ae75-477c-adb0-d5c1abdf95ca)
+
 ![](https://github.com/user-attachments/assets/67f28908-4167-4e7a-a2b4-6969f5adc396)
 
-📸 Capture 11 : Composant exporté
 
 🔹 Configurations sensibles
 
 Vérification de :
 
-android:usesCleartextTraffic="true"
-android:debuggable="true"
-
-usesCleartextTraffic="true" → Autorise HTTP non sécurisé
-
-debuggable="true" → Application débogable (risque en production)
 ![](https://github.com/user-attachments/assets/76db35ca-26e8-4bdf-a7d6-54b39c20506a)
 
-
-📸 Capture 12 : Vérification cleartext / debuggable
-
 4️⃣ Analyse des ressources
+
 🔹 strings.xml
 
-Contient :
-
-Messages affichés
-
-URLs
-
-Clés API (parfois exposées)
-
 ![](https://github.com/user-attachments/assets/6f641b7e-69fb-4938-af42-94627ebf554d)
-![](https://github.com/user-attachments/assets/58aeef7e-21f4-418d-879f-dc1ca85cf371)
 
-📸 Capture 13 : strings.xml
+![](https://github.com/user-attachments/assets/58aeef7e-21f4-418d-879f-dc1ca85cf371)
 
 🔹 network_security_config.xml (si présent)
 
@@ -201,25 +126,23 @@ L’application utilise la configuration réseau par défaut d’Android (HTTP b
 
 <img width="517" height="125" alt="image" src="https://github.com/user-attachments/assets/d9ae2467-cc33-4678-a4a2-af6a93551632" />
 
-Task 4 — Recherche de chaînes sensibles
+# Task 4 — Recherche de chaînes sensibles
 
 Objectif : Identifier les informations sensibles codées en dur dans l'application.
 
-Méthodologie
+- L’application a été ouverte dans JADX GUI.
 
-L’application a été ouverte dans JADX GUI.
+- La recherche globale (Ctrl+F) a été utilisée pour vérifier les patterns critiques suivants :
 
-La recherche globale (Ctrl+F) a été utilisée pour vérifier les patterns critiques suivants :
+# Patterns recherchés :
 
-Patterns recherchés :
+- URLs et endpoints : http://, https://, .com, .net, .org, .io, api, endpoint, url, server
 
-URLs et endpoints : http://, https://, .com, .net, .org, .io, api, endpoint, url, server
+- Informations d’authentification : token, api_key, apikey, secret, password, pwd, auth, bearer, jwt, oauth
 
-Informations d’authentification : token, api_key, apikey, secret, password, pwd, auth, bearer, jwt, oauth
+- Indicateurs de mode de développement : DEBUG, debug, test, staging, dev, firebase, crashlytics
 
-Indicateurs de mode de développement : DEBUG, debug, test, staging, dev, firebase, crashlytics
-
-Observations
+# Observations
 
 | # | Valeur trouvée                                                      | Fichier / Classe        | Risque | Description                                                                                |
 | - | ------------------------------------------------------------------- | ----------------------- | ------ | ------------------------------------------------------------------------------------------ |
@@ -229,16 +152,15 @@ Observations
 | 4 | `com.example.pizzarecipes.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` | `AndroidManifest.xml`   | Faible | Permission interne exposée. Peu critique mais attention si combinée à d’autres failles.    |
 | 5 | `SplashActivity` avec `android:exported="true"`                     | `AndroidManifest.xml`   | Moyen  | Activity exportée pouvant être lancée par d’autres applications. Surface d’attaque accrue. |
 
-Captures d’écran
-
-Observation des URLs et endpoints :
 
 Capture 1 : Recherche http
 
 ![](https://github.com/user-attachments/assets/730010fe-963c-4cc9-be5d-e47f951c9631)
+
 Capture 2 : Recherche https
 
 ![](https://github.com/user-attachments/assets/55836886-22d1-4df5-9487-b2edc0bde25d)
+
 Capture 3 : Exemple de résultat global (endpoint dans le code)
 
 ![](https://github.com/user-attachments/assets/b1e55c09-ca3b-4c73-aec2-dbec28d10c7f)
@@ -247,36 +169,34 @@ Capture 3 : Exemple de résultat global (endpoint dans le code)
 
 Objectif : Transformer le bytecode Android (fichiers DEX) en fichiers JAR pour permettre une analyse alternative.
 
-Méthodologie
-
-Création du dossier pour extraire les DEX :
+- Création du dossier pour extraire les DEX :
 
 ![](https://github.com/user-attachments/assets/dc64cb82-26c5-4d88-b4bc-af1cc16c839d)
 
-
-Extraction des fichiers DEX depuis l’APK :
+- Extraction des fichiers DEX depuis l’APK :
 
 ![](https://github.com/user-attachments/assets/befc8702-65d6-40b1-9a64-651ef9d20ba9)
 ![](https://github.com/user-attachments/assets/f299dca2-33f3-465c-ba33-81cc702e597b)
 ![](https://github.com/user-attachments/assets/bb600eb2-99bb-4c9d-9b70-db43d19390e3)
 
-Vérification des fichiers DEX extraits :
+- Vérification des fichiers DEX extraits :
 
 ![](https://github.com/user-attachments/assets/f14b492b-9588-4811-8f0b-c7ed11d0b431)
 
 ![](https://github.com/user-attachments/assets/7c0dc7a8-54f2-4ebe-a4c4-3d695a989b39)
 
+![](https://github.com/user-attachments/assets/a903ed6a-2c5b-4ba5-8fc3-20c7de5fa9b6)
 
-cd C:\path\to\dex2jar
-.\d2j-dex2jar.bat "C:\APK-Analysis\dex_out\classes.dex" -o "C:\APK-Analysis\classes.jar"
+- Conversion automatique pour tous les fichiers DEX (multi-dex) :
 
-Capture 18 : montre la conversion réussie en classes.jar.
+![](https://github.com/user-attachments/assets/bc031dfc-cf8f-4118-b709-34374e022903)
 
-Conversion automatique pour tous les fichiers DEX (multi-dex) :
+**Résultat et vérification :**  
 
-Get-ChildItem -Path C:\APK-Analysis\dex_out -Filter "classes*.dex" | ForEach-Object {
-    $out = "C:\APK-Analysis\$($_.BaseName).jar"
-    .\d2j-dex2jar.bat $_.FullName -o $out
-}
+- Les fichiers JAR générés se trouvent dans `C:\APK-Analysis`.  
+- Chaque fichier DEX extrait a été converti en JAR correspondant :  
+  - `classes.dex` → `classes.jar`  
+  - `classes2.dex` → `classes2.jar`  
+  - `classes3.dex` → `classes3.jar`  
 
-Capture 19 : tous les fichiers DEX convertis en JAR.
+
