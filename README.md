@@ -197,6 +197,39 @@ Objectif : Transformer le bytecode Android (fichiers DEX) en fichiers JAR pour p
 - Chaque fichier DEX extrait a été converti en JAR correspondant :  
   - `classes.dex` → `classes.jar`  
   - `classes2.dex` → `classes2.jar`  
-  - `classes3.dex` → `classes3.jar`  
+  - `classes3.dex` → `classes3.jar`
+ 
+ # Task 6 — Comparaison JADX vs JD-GUI
+ 
+Objectif :
+
+-Comparer deux outils de décompilation afin d’évaluer leurs différences et déterminer lequel est le plus adapté pour l’analyse d’une application Android.
+
+Outils utilisés :
+
+-JADX GUI (analyse directe du fichier APK)
+
+-JD-GUI (analyse du fichier JAR généré avec dex2jar)
+
+Méthodologie :
+
+-Ouverture de l’APK app-debug.apk dans JADX GUI.
+
+-Ouverture du fichier app.jar dans JD-GUI.
+
+<img width="301" height="247" alt="image" src="https://github.com/user-attachments/assets/11780c79-b364-4277-9129-9d922d66d1c4" />
+
+Comparaison détaillée entre JADX vs JD-GUI :
+
+| Aspect              | JADX GUI                                                             | JD-GUI                                          |
+| ------------------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| Navigation          | Affiche AndroidManifest, ressources (res), assets et code Java       | Affiche uniquement les packages et classes Java |
+| Lisibilité du code  | Code généralement bien structuré et lisible                          | Code lisible mais parfois moins clair           |
+| Gestion Android     | Adapté aux applications Android (reconnaît activités, manifest, XML) | Ne comprend pas la structure Android            |
+| Ressources          | Accès direct aux fichiers XML et ressources                          | Aucune ressource Android visible                |
+| Obfuscation         | Tente de reconstruire certains noms                                  | Conserve souvent les noms obfusqués             |
+| Kotlin  | Meilleure reconstruction                                             | Peut générer un code difficile à lire           |
+
+
 
 
