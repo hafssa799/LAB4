@@ -1,45 +1,47 @@
 
-📄 Rapport d'analyse statique - MyApplication
-Informations générales
+# Rapport d'analyse statique - MyApplication
 
-Date d'analyse : 27/02/2026
+ -- Informations générales
 
-Analyste : Hafssa Azarg
+-Date d'analyse : 27/02/2026
 
-APK analysé : app-debug.apk
+-Analyste : Hafssa Azarg
 
-Version : 1.0 (versionCode 1)
+-APK analysé : app-debug.apk
 
-Package : com.example.myApplication
+-Version : 1.0 (versionCode 1)
 
-Provenance : APK généré depuis Android Studio (mode debug)
+-Package : com.example.myApplication
 
-Outils utilisés : JADX GUI, dex2jar v2.4, JD-GUI
+-Provenance : APK généré depuis Android Studio (mode debug)
 
-Résumé exécutif
+-Outils utilisés : JADX GUI, dex2jar v2.4, JD-GUI
 
-Cette analyse statique a révélé 3 vulnérabilités potentielles dans l'application PizzaRecipes.
+# Résumé exécutif
 
-Les principales préoccupations concernent :
+-Cette analyse statique a révélé 3 vulnérabilités potentielles dans l'application PizzaRecipes.
 
-L'application est compilée en mode debug
+# Les principales préoccupations concernent :
 
-Une activité exportée accessible depuis l’extérieur
+-L'application est compilée en mode debug
 
-L’option allowBackup activée
+-Une activité exportée accessible depuis l’extérieur
 
-Le niveau de risque global est évalué comme : Moyen
+-L’option allowBackup activée
 
-Actions prioritaires recommandées :
+-Le niveau de risque global est évalué comme : Moyen
 
-Désactiver le mode debug en production
+# Actions prioritaires recommandées :
 
-Vérifier et restreindre les composants exportés
+-Désactiver le mode debug en production
 
-Désactiver allowBackup si non nécessaire
+-Vérifier et restreindre les composants exportés
 
-Constats détaillés
-Constat #1 : Application en mode debug activé
+-Désactiver allowBackup si non nécessaire
+
+# Constats détaillés
+
+# Constat #1 : Application en mode debug activé
 
 Sévérité : Élevée
 
@@ -63,7 +65,7 @@ Remédiation recommandée :
 Désactiver le mode debug en production :
 
 android:debuggable="false"
-Constat #2 : Activité exportée
+# Constat #2 : Activité exportée
 
 Sévérité : Moyenne
 
@@ -86,7 +88,7 @@ Augmentation de la surface d’attaque
 Remédiation recommandée :
 Limiter l’export uniquement si nécessaire ou ajouter des contrôles de sécurité.
 
-Constat #3 : allowBackup activé
+# Constat #3 : allowBackup activé
 
 Sévérité : Moyenne
 
@@ -107,20 +109,9 @@ Extraction possible via ADB backup
 Remédiation recommandée :
 
 android:allowBackup="false"
-Annexes
-Permissions demandées
 
-com.example.pizzarecipes.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
 
-(Aucune permission sensible comme INTERNET ou ACCESS_FINE_LOCATION n’a été détectée.)
-
-Composants exportés
-
-SplashActivity (exported = true)
-
-ProfileInstallReceiver (exported = true)
-
-Conclusion finale
+# Conclusion finale
 
 L'application analysée est une application simple sans permissions sensibles majeures.
 
