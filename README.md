@@ -217,7 +217,7 @@ Méthodologie :
 
 -Ouverture du fichier app.jar dans JD-GUI.
 
-<img width="301" height="247" alt="image" src="https://github.com/user-attachments/assets/11780c79-b364-4277-9129-9d922d66d1c4" />
+![](https://github.com/user-attachments/assets/11780c79-b364-4277-9129-9d922d66d1c4)
 
 Comparaison détaillée entre JADX vs JD-GUI :
 
@@ -230,6 +230,8 @@ Comparaison détaillée entre JADX vs JD-GUI :
 | Obfuscation         | Tente de reconstruire certains noms                                  | Conserve souvent les noms obfusqués             |
 | Kotlin  | Meilleure reconstruction                                             | Peut générer un code difficile à lire           |
 
+# Task 7 :  Rédaction du mini-rapport
 
+le fichier rapport.md a été créé et mis en ligne sur le dépôt GitHub du projet : LAB4. Il contient toutes les sections demandées : informations générales, résumé exécutif, constats détaillés et annexes. »
 
 
